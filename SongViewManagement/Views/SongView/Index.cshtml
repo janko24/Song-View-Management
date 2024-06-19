@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SongViewLibrary.Model.SongView>
+@using Google.Apis.YouTube.v3
+@using SongViewManagement.Controllers
+@using SongViewManagement.Helper
+
+
+<h2>Songs Views List</h2>
+
+<div class="container mt-4">
+
+    <button type="button" class="btn btn-warning mb-3" id="addRowsBtn" title="Please add Viewscount once in a day.">
+        <i class="bi bi-calendar2-plus-fill"></i>
+        Add Today's Views
+    </button>
+    
+    <button type="button" class="btn btn-primary mb-3 float-right" formtarget="_blank" id="extractPdfBtn" disabled>
+        Extract Pdf
+    </button>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered datatable">
+            <thead class="thead-dark border-1">
+                <tr>
+                    <th>
+                        <input type="checkbox" id="selectAllCheckbox">
+                    </th>
+                    <th>Song Name</th>
+                    <th title="Previous day Views Count">Daily Views</th>
+                    <th title="Previous Week (Mon-Sun) Views Count">Weekly Views</th>
+                    <th title="Previous Month Views Count">Monthly Views</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var calculatedView in ViewBag.CalculatedViews)
+                {
+                    var songId = calculatedView.SongId;
+                    var dailyView = calculatedView.DailyView;
+                    var weeklyView = calculatedView.WeeklyView;
+                    var monthlyView = calculatedView.MonthlyView;
+                    
+                    <tr>
+                        <td>
+                            <input type="checkbox" class="extractDetailsCheckbox" data-songid="@songId">
+                        </td>
+                         <td>@Model.FirstOrDefault(sv => sv.SongId == songId)?.Song.Name</td>
+                        <td>@ViewBag.SongViewHelper.FormatNumberWithCommasCustom(dailyView)</td>
+                        <td>@ViewBag.SongViewHelper.FormatNumberWithCommasCustom(weeklyView)</td>
+                        <td>@ViewBag.SongViewHelper.FormatNumberWithCommasCustom(monthlyView)</td>
+                        @* <td>@dailyView</td>
+                        <td>@weeklyView</td>
+                        <td>@monthlyView</td> *@
+                        <td>
+                            <a asp-action="Edit" asp-controller="Song" asp-route-id="@songId" class="btn btn-primary btn-sm" title="Edit Song"><i class="bi bi-pencil"></i></a>
+                            <a asp-action="Delete" asp-route-id="@songId" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirm-delete-modal" title="Delete Song"><i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

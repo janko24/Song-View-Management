@@ -1,0 +1,27 @@
+﻿@model SongViewLibrary.Model.AddSong
+<div class="container">
+    <h2>Add Song</h2>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <form asp-action="Add">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Name</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Url" class="control-label">URL</label>
+                    <input asp-for="Url" class="form-control" />
+                    <span asp-validation-for="Url" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <button type="submit" class="btn btn-warning" title="Add Song into List">Add</button>
+                    <a asp-action="Index" class="btn btn-secondary ml-2" title="Back to Songs List">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

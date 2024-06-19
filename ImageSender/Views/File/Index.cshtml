@@ -1,0 +1,25 @@
+﻿@{
+    var title = ViewBag.Message != null ? "Send Email with Attachments" : "Email Status";
+}
+
+<h1>@title</h1>
+
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div id="emailStatusMessage" class="alert alert-@(ViewBag.Message.StartsWith("Email sent") ? "success" : "danger")" role="alert">
+        @ViewBag.Message
+    </div>
+}
+
+
+<p class="lead text-dark font-weight-normal">
+    <span>
+        If you want to send an email, kindly click the button below:
+    </span>
+</p>
+
+<form method="post" action="/file/sendemail">
+    <button type="submit" class="btn btn-warning">Send Email</button>
+</form>
+
+

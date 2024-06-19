@@ -1,0 +1,31 @@
+﻿@model SongViewLibrary.Model.SongView
+
+<div class="container">
+    <div class="card mt-5">
+        <div class="card-header bg-danger text-white">
+            <h2 class="card-title">Delete Song</h2>
+        </div>
+        <div class="card-body">
+            <h3 class="card-title">Are you sure you want to delete this song?</h3>
+            <dl class="row">
+                <dt class="col-sm-3">Song ID:</dt>
+                <dd class="col-sm-9">@Model.SongId</dd>
+
+                <dt class="col-sm-3">Song Name:</dt>
+                <dd class="col-sm-9">@Model.SongName</dd>
+
+                <dt class="col-sm-3">Views Count:</dt>
+                <dd class="col-sm-9">@Model.ViewsCount</dd>
+
+                <dt class="col-sm-3">Extracted Timestamp:</dt>
+                <dd class="col-sm-9">@Model.ExtractedTimestamp</dd>
+            </dl>
+            <form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="mt-4">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger" title="Delete Song">Delete</button>
+                    <a asp-action="Index" class="btn btn-secondary ml-2" title="Back to Songs Views List">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
