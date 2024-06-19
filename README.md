@@ -24,3 +24,7 @@ The Song View Management project simplifies song management and analysis for mus
         <li>Modify the email and folder path settings in the <code>appsettings.json</code> file as per your requirements.</li>
         <li>Modify Client ID and Secret in the <code>GmailServiceHelper.cs</code> class.</li>
     </ol>
+    <h3>SongViewUpdateService:</h3>
+    <ol>
+        <li>Modify the the API key of Youtube API </li>
+    </ol>
